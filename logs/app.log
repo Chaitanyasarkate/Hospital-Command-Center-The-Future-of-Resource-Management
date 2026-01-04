@@ -1,0 +1,99 @@
+2026-01-03 19:20:54,191 WARNING  * Debugger is active!
+2026-01-03 19:20:54,202 INFO  * Debugger PIN: 895-948-925
+2026-01-03 19:20:54,718 WARNING  * Debugger is active!
+2026-01-03 19:20:54,762 INFO  * Debugger PIN: 895-948-925
+2026-01-03 19:21:33,914 INFO  * Detected change in 'C:\\Users\\sarka\\OneDrive\\Desktop\\hackethon\\app.py', reloading
+2026-01-03 19:21:33,987 INFO  * Detected change in 'C:\\Users\\sarka\\OneDrive\\Desktop\\hackethon\\app.py', reloading
+2026-01-03 19:21:39,763 WARNING  * Debugger is active!
+2026-01-03 19:21:39,773 INFO  * Debugger PIN: 895-948-925
+2026-01-03 19:21:39,886 WARNING  * Debugger is active!
+2026-01-03 19:21:39,893 INFO  * Debugger PIN: 895-948-925
+2026-01-03 19:23:03,840 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-01-03 19:23:03,842 INFO [33mPress CTRL+C to quit[0m
+2026-01-03 19:23:03,850 INFO  * Restarting with stat
+2026-01-03 19:23:06,969 WARNING  * Debugger is active!
+2026-01-03 19:23:06,975 INFO  * Debugger PIN: 895-948-925
+2026-01-03 19:23:14,584 INFO 127.0.0.1 - - [03/Jan/2026 19:23:14] "GET / HTTP/1.1" 200 -
+2026-01-03 19:23:14,770 INFO 127.0.0.1 - - [03/Jan/2026 19:23:14] "GET /static/style.css HTTP/1.1" 200 -
+2026-01-03 19:23:15,425 INFO 127.0.0.1 - - [03/Jan/2026 19:23:15] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 204 -
+2026-01-03 19:23:39,283 INFO 127.0.0.1 - - [03/Jan/2026 19:23:39] "POST /preview HTTP/1.1" 200 -
+2026-01-03 19:23:44,080 INFO 127.0.0.1 - - [03/Jan/2026 19:23:44] "[32mPOST /upload HTTP/1.1[0m" 302 -
+2026-01-03 19:23:44,144 INFO 127.0.0.1 - - [03/Jan/2026 19:23:44] "GET /?msg=CSV+uploaded+and+models+retrained HTTP/1.1" 200 -
+2026-01-03 19:23:44,171 INFO 127.0.0.1 - - [03/Jan/2026 19:23:44] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2026-01-03 19:23:44,389 INFO 127.0.0.1 - - [03/Jan/2026 19:23:44] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 204 -
+2026-01-03 19:23:49,521 INFO 127.0.0.1 - - [03/Jan/2026 19:23:49] "[32mPOST /retrain HTTP/1.1[0m" 302 -
+2026-01-03 19:23:49,575 INFO 127.0.0.1 - - [03/Jan/2026 19:23:49] "GET /?msg=Models+retrained+successfully HTTP/1.1" 200 -
+2026-01-03 19:23:49,631 INFO 127.0.0.1 - - [03/Jan/2026 19:23:49] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2026-01-03 19:23:49,868 INFO 127.0.0.1 - - [03/Jan/2026 19:23:49] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 204 -
+2026-01-03 19:23:54,972 INFO 127.0.0.1 - - [03/Jan/2026 19:23:54] "POST /preview HTTP/1.1" 200 -
+2026-01-03 19:23:58,022 INFO 127.0.0.1 - - [03/Jan/2026 19:23:58] "[32mPOST /upload HTTP/1.1[0m" 302 -
+2026-01-03 19:23:58,138 INFO 127.0.0.1 - - [03/Jan/2026 19:23:58] "GET /?msg=CSV+uploaded+and+models+retrained HTTP/1.1" 200 -
+2026-01-03 19:23:58,162 INFO 127.0.0.1 - - [03/Jan/2026 19:23:58] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2026-01-03 19:23:58,343 INFO 127.0.0.1 - - [03/Jan/2026 19:23:58] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 204 -
+2026-01-03 19:24:32,356 INFO 127.0.0.1 - - [03/Jan/2026 19:24:32] "POST /preview HTTP/1.1" 200 -
+2026-01-03 19:28:44,909 INFO 127.0.0.1 - - [03/Jan/2026 19:28:44] "POST /preview HTTP/1.1" 200 -
+2026-01-03 19:28:46,288 INFO 127.0.0.1 - - [03/Jan/2026 19:28:46] "[32mPOST /upload HTTP/1.1[0m" 302 -
+2026-01-03 19:28:46,373 INFO 127.0.0.1 - - [03/Jan/2026 19:28:46] "GET /?msg=CSV+uploaded+and+models+retrained HTTP/1.1" 200 -
+2026-01-03 19:28:46,404 INFO 127.0.0.1 - - [03/Jan/2026 19:28:46] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2026-01-03 19:28:46,604 INFO 127.0.0.1 - - [03/Jan/2026 19:28:46] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 204 -
+2026-01-03 19:28:59,495 INFO 127.0.0.1 - - [03/Jan/2026 19:28:59] "[32mPOST /retrain HTTP/1.1[0m" 302 -
+2026-01-03 19:28:59,546 INFO 127.0.0.1 - - [03/Jan/2026 19:28:59] "GET /?msg=Models+retrained+successfully HTTP/1.1" 200 -
+2026-01-03 19:28:59,578 INFO 127.0.0.1 - - [03/Jan/2026 19:28:59] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2026-01-03 19:28:59,775 INFO 127.0.0.1 - - [03/Jan/2026 19:28:59] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 204 -
+2026-01-03 19:29:00,558 INFO 127.0.0.1 - - [03/Jan/2026 19:29:00] "[32mPOST /retrain HTTP/1.1[0m" 302 -
+2026-01-03 19:29:00,609 INFO 127.0.0.1 - - [03/Jan/2026 19:29:00] "GET /?msg=Models+retrained+successfully HTTP/1.1" 200 -
+2026-01-03 19:29:00,634 INFO 127.0.0.1 - - [03/Jan/2026 19:29:00] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2026-01-03 19:29:00,822 INFO 127.0.0.1 - - [03/Jan/2026 19:29:00] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 204 -
+2026-01-03 19:30:05,208 INFO  * Detected change in 'C:\\Users\\sarka\\OneDrive\\Desktop\\hackethon\\app.py', reloading
+2026-01-03 19:30:05,210 INFO  * Detected change in 'C:\\Users\\sarka\\OneDrive\\Desktop\\hackethon\\app.py', reloading
+2026-01-03 19:30:05,658 INFO  * Restarting with stat
+2026-01-03 19:30:12,323 WARNING  * Debugger is active!
+2026-01-03 19:30:12,337 INFO  * Debugger PIN: 895-948-925
+2026-01-03 19:30:12,787 WARNING  * Debugger is active!
+2026-01-03 19:30:12,798 INFO  * Debugger PIN: 895-948-925
+2026-01-03 19:30:14,160 INFO 127.0.0.1 - - [03/Jan/2026 19:30:14] "GET /?msg=Models+retrained+successfully HTTP/1.1" 200 -
+2026-01-03 19:30:14,306 INFO 127.0.0.1 - - [03/Jan/2026 19:30:14] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2026-01-03 19:30:14,520 INFO 127.0.0.1 - - [03/Jan/2026 19:30:14] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 204 -
+2026-01-03 19:30:15,942 INFO 127.0.0.1 - - [03/Jan/2026 19:30:15] "GET /?msg=Models+retrained+successfully HTTP/1.1" 200 -
+2026-01-03 19:30:15,965 INFO 127.0.0.1 - - [03/Jan/2026 19:30:15] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2026-01-03 19:30:16,183 INFO 127.0.0.1 - - [03/Jan/2026 19:30:16] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 204 -
+2026-01-03 19:30:24,623 INFO 127.0.0.1 - - [03/Jan/2026 19:30:24] "POST /preview HTTP/1.1" 200 -
+2026-01-03 19:30:26,070 INFO 127.0.0.1 - - [03/Jan/2026 19:30:26] "[35m[1mPOST /upload HTTP/1.1[0m" 500 -
+2026-01-03 19:30:26,125 INFO 127.0.0.1 - - [03/Jan/2026 19:30:26] "[36mGET /upload?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2026-01-03 19:30:26,179 INFO 127.0.0.1 - - [03/Jan/2026 19:30:26] "[36mGET /upload?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2026-01-03 19:30:26,430 INFO 127.0.0.1 - - [03/Jan/2026 19:30:26] "GET /upload?__debugger__=yes&cmd=resource&f=console.png&s=alz602jV7Iv9kXFUxnVc HTTP/1.1" 200 -
+2026-01-03 19:30:43,836 INFO  * Detected change in 'C:\\Users\\sarka\\OneDrive\\Desktop\\hackethon\\app.py', reloading
+2026-01-03 19:30:43,839 INFO  * Detected change in 'C:\\Users\\sarka\\OneDrive\\Desktop\\hackethon\\app.py', reloading
+2026-01-03 19:30:44,285 INFO  * Restarting with stat
+2026-01-03 19:30:49,280 WARNING  * Debugger is active!
+2026-01-03 19:30:49,287 INFO  * Debugger PIN: 895-948-925
+2026-01-03 19:30:49,762 WARNING  * Debugger is active!
+2026-01-03 19:30:49,770 INFO  * Debugger PIN: 895-948-925
+2026-01-03 19:30:50,275 INFO 127.0.0.1 - - [03/Jan/2026 19:30:50] "[32mPOST /upload HTTP/1.1[0m" 302 -
+2026-01-03 19:30:50,392 INFO 127.0.0.1 - - [03/Jan/2026 19:30:50] "GET /?msg=CSV+uploaded+and+models+retrained HTTP/1.1" 200 -
+2026-01-03 19:30:50,557 INFO 127.0.0.1 - - [03/Jan/2026 19:30:50] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2026-01-03 19:30:50,743 INFO 127.0.0.1 - - [03/Jan/2026 19:30:50] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 204 -
+2026-01-03 19:30:56,007 INFO 127.0.0.1 - - [03/Jan/2026 19:30:56] "POST /preview HTTP/1.1" 200 -
+2026-01-03 19:30:57,280 INFO 127.0.0.1 - - [03/Jan/2026 19:30:57] "[32mPOST /upload HTTP/1.1[0m" 302 -
+2026-01-03 19:30:57,346 INFO 127.0.0.1 - - [03/Jan/2026 19:30:57] "GET /?msg=CSV+uploaded+and+models+retrained HTTP/1.1" 200 -
+2026-01-03 19:30:57,386 INFO 127.0.0.1 - - [03/Jan/2026 19:30:57] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2026-01-03 19:30:57,631 INFO 127.0.0.1 - - [03/Jan/2026 19:30:57] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 204 -
+2026-01-03 19:31:38,457 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-01-03 19:31:38,458 INFO [33mPress CTRL+C to quit[0m
+2026-01-03 19:31:38,463 INFO  * Restarting with stat
+2026-01-03 19:31:41,631 WARNING  * Debugger is active!
+2026-01-03 19:31:41,638 INFO  * Debugger PIN: 895-948-925
+2026-01-03 19:31:58,683 INFO 127.0.0.1 - - [03/Jan/2026 19:31:58] "GET / HTTP/1.1" 200 -
+2026-01-03 19:31:59,725 INFO 127.0.0.1 - - [03/Jan/2026 19:31:59] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2026-01-03 19:32:01,572 INFO 127.0.0.1 - - [03/Jan/2026 19:32:01] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 204 -
+2026-01-03 19:32:12,896 INFO 127.0.0.1 - - [03/Jan/2026 19:32:12] "POST /preview HTTP/1.1" 200 -
+2026-01-03 19:32:14,782 INFO 127.0.0.1 - - [03/Jan/2026 19:32:14] "[32mPOST /upload HTTP/1.1[0m" 302 -
+2026-01-03 19:32:14,913 INFO 127.0.0.1 - - [03/Jan/2026 19:32:14] "GET /?msg=CSV+uploaded+and+models+retrained HTTP/1.1" 200 -
+2026-01-03 19:32:14,940 INFO 127.0.0.1 - - [03/Jan/2026 19:32:14] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2026-01-03 19:32:15,195 INFO 127.0.0.1 - - [03/Jan/2026 19:32:15] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 204 -
+2026-01-03 19:33:38,891 INFO  * Detected change in 'C:\\Users\\sarka\\OneDrive\\Desktop\\hackethon\\app.py', reloading
+2026-01-03 19:33:39,533 INFO  * Restarting with stat
+2026-01-03 19:33:50,976 INFO  * Restarting with stat
+2026-01-03 19:34:21,569 INFO  * Restarting with stat

@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>AI-Based Predictive Hospital Dashboard</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="/static/style.css">
+		<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+	</head>
+	<body>
+		<div class="container">
+			<header>
+				<div class="brand">
+					<div class="logo">AI</div>
+					<div>
+						<h1>Predictive Hospital Resource &amp; Emergency Load Intelligence</h1>
+						<div class="lead">Next-24h ER & ICU forecasts, staff workload, bed occupancy, and recommendations</div>
+					</div>
+				</div>
+				<div class="top-actions">
+								<form id="uploadForm" action="/upload" method="post" enctype="multipart/form-data" style="display:inline-block">
+									<label class="btn secondary" style="cursor:pointer">
+										Upload CSV
+										<input id="csvInput" class="upload-input" type="file" name="csv">
+									</label>
+								</form>
+					<form action="/retrain" method="post" style="display:inline-block">
+						<button class="btn" type="submit">Retrain Models</button>
+					</form>
+				</div>
+			</header>
+
+			{% if data.message %}
+			<div class="card" style="margin-bottom:12px">
+				<strong>Status:</strong> <span class="muted">{{ data.message }}</span>
+			</div>
+			{% endif %}
+
+			<div class="cards">
+				<div class="card">
+					<h3>Emergency Room — Next 24h</h3>
+					<div class="chart-wrap">
+						<canvas id="erChart"></canvas>
+					</div>
+					<div class="chips">
+						<span class="chip">Mean (24h): {{ data.er_mean_24h }}</span>
+						<span class="chip">Historical mean: {{ data.historical_mean_er }}</span>
+					</div>
+				</div>
+
+				<div class="card">
+					<h3>ICU Demand — Next 24h</h3>
+					<div class="chart-wrap">
+						<canvas id="icuChart"></canvas>
+					</div>
+					<div class="chips">
+						<span class="chip">Peak (24h): {{ data.icu_peak }}</span>
+						<span class="chip">ICU capacity: {{ data.icu_capacity }}</span>
+					</div>
+				</div>
+
+				<div class="card">
+					<h3>Staff Workload</h3>
+					<div class="metric-row" style="margin-top:8px">
+						<div class="metric">
+							<div class="label">Predicted patients (24h)</div>
+							<div class="value">{{ data.staff_info.predicted_total_er_24h }}</div>
+						</div>
+						<div class="metric">
+							<div class="label">Median staff on duty</div>
+							<div class="value">{{ data.staff_info.median_staff }}</div>
+						</div>
+						<div class="metric">
+							<div class="label">Workload ratio</div>
+							<div class="value">{{ data.staff_info.ratio }}</div>
+						</div>
+					</div>
+					<div style="margin-top:12px">
+						<strong>Status:</strong> <span class="muted">{{ data.staff_info.status }}</span>
+					</div>
+				</div>
+
+				<div class="card alerts">
+					<h3>Alerts</h3>
+					{% if data.alerts %}
+						<div style="display:flex;flex-direction:column;gap:8px;margin-top:8px">
+							{% for a in data.alerts %}
+								<div class="alert-item">{{ a.type }} — {{ a.message }}</div>
+							{% endfor %}
+						</div>
+					{% else %}
+						<div class="muted">No active alerts</div>
+					{% endif %}
+				</div>
+
+				<div class="card">
+					<h3>Recommendations</h3>
+					{% if data.recommendations %}
+						<ul style="margin:8px 0 0 18px">
+							{% for r in data.recommendations %}
+								<li>{{ r }}</li>
+							{% endfor %}
+						</ul>
+					{% else %}
+						<div class="muted">No recommendations at this time</div>
+					{% endif %}
+				</div>
+
+				<div class="card">
+					<h3>Bed Occupancy (latest)</h3>
+					<p class="big">Occupied: {{ data.bed_latest.occupied }} / Total: {{ data.bed_latest.total_beds }} <span class="muted">({{ data.bed_latest.occupancy_pct }}%)</span></p>
+					<div class="chart-wrap" style="height:140px;margin-top:8px">
+						<canvas id="bedChart"></canvas>
+					</div>
+					<div style="margin-top:8px" class="muted">Predicted peak: {{ data.peak_predicted_beds }} beds ({{ data.peak_predicted_pct }}%)</div>
+				</div>
+			</div>
+
+            
+		</div>
+
+			<!-- CSV preview modal -->
+			<div id="previewModal" class="modal" style="display:none">
+				<div class="modal-content">
+					<h3>CSV Preview</h3>
+					<div id="previewColumns" class="muted"></div>
+					<div style="max-height:240px;overflow:auto;margin-top:8px"><table id="previewTable" style="width:100%;border-collapse:collapse"></table></div>
+					<div style="margin-top:12px;display:flex;gap:8px;justify-content:flex-end">
+						<button id="cancelPreview" class="btn secondary">Cancel</button>
+						<button id="confirmUpload" class="btn">Confirm & Upload</button>
+					</div>
+				</div>
+			</div>
+
+			<script>
+			const erTimes = {{ data.er_times_24h | tojson | safe }};
+			const erVals = {{ data.er_predictions_24h | tojson | safe }};
+			const icuVals = {{ data.icu_predictions_24h | tojson | safe }};
+			const bedVals = {{ data.predicted_bed_demand | tojson | safe }};
+
+					function mountPlaceholder(canvasId, text){
+						const c = document.getElementById(canvasId);
+						if(!c) return;
+						const parent = c.parentElement;
+						parent.innerHTML = `<div style="height:220px;display:flex;align-items:center;justify-content:center;color:${'#94a3b8'}">${text}</div>`;
+					}
+
+					function safeCreateChart(canvasId, cfg){
+						const c = document.getElementById(canvasId);
+						if(!c) return null;
+						const ctx = c.getContext('2d');
+						return new Chart(ctx, cfg);
+					}
+
+					if(Array.isArray(erVals) && erVals.length){
+						safeCreateChart('erChart', {
+							type: 'line',
+							data: { labels: erTimes, datasets: [{ label: 'ER admissions', data: erVals, borderColor: '#3b82f6', backgroundColor: 'rgba(59,130,246,0.08)', tension: 0.35, fill:true }]},
+							options: { plugins:{legend:{display:false}}, scales:{x:{display:false}} }
+						});
+					} else {
+						mountPlaceholder('erChart', 'No ER prediction data available');
+					}
+
+					if(Array.isArray(icuVals) && icuVals.length){
+						safeCreateChart('icuChart', {
+							type: 'bar',
+							data: { labels: erTimes, datasets: [{ label: 'ICU beds', data: icuVals, backgroundColor: '#06b6d4' }]},
+							options: { plugins:{legend:{display:false}}, scales:{x:{display:false}} }
+						});
+					} else {
+						mountPlaceholder('icuChart', 'No ICU prediction data available');
+					}
+
+					if(Array.isArray(bedVals) && bedVals.length){
+						safeCreateChart('bedChart', {
+							type: 'line',
+							data: { labels: erTimes, datasets: [{ label: 'Predicted beds', data: bedVals, borderColor: '#10b981', backgroundColor:'rgba(16,185,129,0.08)', tension:0.3, fill:true }]},
+							options: { plugins:{legend:{display:false}}, scales:{x:{display:false}} }
+						});
+							} else {
+								mountPlaceholder('bedChart', 'No bed demand data available');
+							}
+
+							// CSV preview logic
+							const csvInput = document.getElementById('csvInput');
+							const previewModal = document.getElementById('previewModal');
+							const previewTable = document.getElementById('previewTable');
+							const previewColumns = document.getElementById('previewColumns');
+							const cancelPreview = document.getElementById('cancelPreview');
+							const confirmUpload = document.getElementById('confirmUpload');
+							const uploadForm = document.getElementById('uploadForm');
+
+							function showPreviewModal(cols, rows){
+								previewColumns.textContent = 'Columns: ' + cols.join(', ');
+								// build simple table
+								previewTable.innerHTML = '';
+								if(rows.length){
+									const header = document.createElement('tr');
+									cols.forEach(c => { const th = document.createElement('th'); th.textContent = c; th.style.textAlign='left'; th.style.padding='6px 8px'; header.appendChild(th); });
+									previewTable.appendChild(header);
+									rows.forEach(r => {
+										const tr = document.createElement('tr');
+										cols.forEach(c => { const td = document.createElement('td'); td.textContent = r[c] ?? ''; td.style.padding='6px 8px'; tr.appendChild(td); });
+										previewTable.appendChild(tr);
+									});
+								} else {
+									previewTable.innerHTML = '<tr><td class="muted">(no rows)</td></tr>';
+								}
+								previewModal.style.display = 'block';
+							}
+
+							function closePreview(){ previewModal.style.display='none'; }
+
+							csvInput.addEventListener('change', async function(){
+								const f = this.files && this.files[0];
+								if(!f) return;
+								const fd = new FormData();
+								fd.append('csv', f);
+								try{
+									const resp = await fetch('/preview', { method:'POST', body: fd });
+									const json = await resp.json();
+									if(!json.ok){ alert('Preview error: ' + (json.message||'unknown')); return; }
+									showPreviewModal(json.columns, json.preview);
+								}catch(err){
+									alert('Preview failed: ' + err);
+								}
+							});
+
+							cancelPreview.addEventListener('click', function(e){ e.preventDefault(); closePreview(); csvInput.value = ''; });
+							confirmUpload.addEventListener('click', function(e){ e.preventDefault(); closePreview(); uploadForm.submit(); });
+		</script>
+	</body>
+</html>

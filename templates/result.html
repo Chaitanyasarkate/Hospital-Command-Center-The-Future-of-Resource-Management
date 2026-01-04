@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Prediction Result</title>
+    <style>
+      body { font-family: Arial, sans-serif; margin: 40px; }
+      .container { max-width: 800px; margin: auto; }
+      .card { border: 1px solid #ddd; padding: 16px; margin-bottom: 12px; border-radius: 6px; }
+      .alert-high { color: #b00020; font-weight: bold; }
+      .alert-medium { color: #e67e22; font-weight: bold; }
+      .alert-normal { color: #27ae60; font-weight: bold; }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Forecast Results</h1>
+
+      <div class="card">
+        <h3>Predicted next-month metrics</h3>
+        <p><strong>Predicted total patients:</strong> {{ pred_total_patients }}</p>
+        <p><strong>Predicted ICU beds required:</strong> {{ pred_icu }}</p>
+        <p><strong>Predicted staff workload index:</strong> {{ pred_workload }}</p>
+      </div>
+
+      <div class="card">
+        <h3>ICU capacity & alert</h3>
+        <p><strong>Estimated ICU capacity:</strong> {{ icu_capacity }} beds</p>
+        <p><strong>Alert:</strong> {{ alert_text }}</p>
+      </div>
+
+      <div class="card">
+        <h3>Model performance (R² on full dataset)</h3>
+        <p>Model 1 (total_patients) R²: {{ r2_1 }}</p>
+        <p>Model 2 (icu_beds_used) R²: {{ r2_2 }}</p>
+        <p>Model 3 (staff_workload_index) R²: {{ r2_3 }}</p>
+      </div>
+
+      <div class="card">
+        <h3>Sample inputs used</h3>
+        <ul>
+          <li>day: {{ sample_inputs.day }}</li>
+          <li>month: {{ sample_inputs.month }}</li>
+          <li>icu_beds_used (recent avg): {{ sample_inputs.icu_beds_used | round(1) }}</li>
+          <li>emergency_patients (recent avg): {{ sample_inputs.emergency_patients | round(1) }}</li>
+          <li>staff_on_duty (recent avg): {{ sample_inputs.staff_on_duty | round(1) }}</li>
+        </ul>
+      </div>
+
+      <a href="/">← Back</a>
+    </div>
+  </body>
+</html>
