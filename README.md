@@ -22,7 +22,6 @@ Project structure:
 - `static/*` - CSS and JS
 
 Notes:
-
 - Models are intentionally simple and explainable for hackathon/demo purposes.
 - For production, persist trained models, add validation, and secure the web app.
 
