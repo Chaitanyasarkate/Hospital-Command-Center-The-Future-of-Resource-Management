@@ -13,6 +13,7 @@ Open <http://127.0.0.1:5000/> to view the dashboard.
 
 Project structure:
 
+
 - `app.py` - Flask backend that runs models and renders dashboard
 - `data/hospital_data.csv` - synthetic realistic hourly hospital data
 - `model/er_prediction.py` - ER admissions model (LinearRegression)
@@ -22,6 +23,7 @@ Project structure:
 - `static/*` - CSS and JS
 
 Notes:
+
 - Models are intentionally simple and explainable for hackathon/demo purposes.
 - For production, persist trained models, add validation, and secure the web app.
 
